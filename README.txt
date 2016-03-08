@@ -1,8 +1,8 @@
-Setup Note:
+Setup Note :
 Please set the BookFinder website in the Client solution folder as your *startup project before running. 
 
 
-Over View:
+Over View :
  This exercise didn't call for a Data Access layer being implemented, so I'm spoofing it in the Business layer (FakeDomain). However the full architecture would go a bit like this, the arrows point to the assembly references:
 
 Client --> Business Layer Interfaces <-- Business Layer Implementation (actual classes with logic in them) --> Data Access Layer Interfaces <-- Data Access Layer Implementation.
