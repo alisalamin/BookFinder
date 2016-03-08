@@ -1,5 +1,5 @@
 Setup Note:
-Please set the BookFinder website in the Client solution folder as your *startup project before running.
+Please set the BookFinder website in the Client solution folder as your *startup project before running. 
 
 
 Over View:
