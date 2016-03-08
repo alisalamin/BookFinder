@@ -1,0 +1,61 @@
+﻿@using BookFinder.Models;
+@using Common.Constants;
+@using System.Reflection;
+@model BooksViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+@{
+    var enabledLetters = Model.Books.OrderBy(x => x.Title)
+        .GroupBy(x => x.Title.Substring(0, 1)).Select(x => x.Key);
+}
+
+<div>
+    <ul id="menu">
+        @foreach (var letter in typeof(Alphabet).GetFields())
+        {
+            <li>
+                @if (enabledLetters.Contains(letter.GetValue(BindingFlags.Default)))
+                {
+                    <a href="#">@letter.GetValue(BindingFlags.Default)</a>
+                }
+                else
+                {
+                    @letter.GetValue(BindingFlags.Default)
+                }
+            </li>
+        }
+    </ul>
+</div>
+
+
+<div class="col1">
+    @foreach (var letter in enabledLetters)
+    {
+        <div>
+            @letter
+        </div>
+
+
+        var titleGroup = Model.Books
+            .OrderBy(x => x.Title)
+            .Where(x => x.Title[0] == Convert.ToChar(letter))
+            .Select(x => new { x.ISBN, x.Title });
+
+        foreach (var item in titleGroup)
+        {
+            <div>
+                <a href="#" onclick="viewBook(@item.ISBN);">@item.Title</a>
+            </div>
+        }
+
+        <br />
+    }
+
+</div>
+
+@Html.Partial("_BookDescription", new BookViewModel())
