@@ -28,13 +28,17 @@ namespace BookFinder.Controllers
             return View(GetBookList());
         }
 
+        //Alternate approach using cacheing being used.
+        /*
         [HttpPost]
         public JsonResult GetBook(int isbn)
         {
             return Json(GetSingleBook(isbn), JsonRequestBehavior.AllowGet);
         }
+        */
 
-
+        //cache for 2 hrs.
+        [OutputCache(Duration = 7200, VaryByParam = "none")]
         private BooksViewModel GetBookList()
         {
             var bookBOList = _BookManager.GetList();

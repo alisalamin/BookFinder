@@ -3,6 +3,7 @@
 });
 
 
+/*
 function viewBook(isbn) {
     var paramObject = {};
     paramObject.isbn = isbn;
@@ -20,6 +21,19 @@ function viewBook(isbn) {
         },
         failure: function (errMsg) {
             console.log(errMsg);
+        }
+    });
+}
+*/
+
+function viewBookUsingCache(isbn) {
+    var model = JSON.parse($('#books-model').val());
+
+    $.each(model.Books, function (i, v) {
+        if (v.ISBN == isbn) {
+            $("#title").html(v.Title);
+            $("#description").html(v.Description);
+            return;
         }
     });
 }

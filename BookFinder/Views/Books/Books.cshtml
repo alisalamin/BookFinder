@@ -5,6 +5,8 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var booksModel = Html.Raw(Json.Encode(Model));
+    @Html.Hidden("books-model", booksModel);
 }
 
 
@@ -31,7 +33,6 @@
     </ul>
 </div>
 
-
 <div class="col1">
     @foreach (var letter in enabledLetters)
     {
@@ -48,13 +49,12 @@
         foreach (var item in titleGroup)
         {
             <div>
-                <a href="#" onclick="viewBook(@item.ISBN);">@item.Title</a>
+                <a href="#" onclick="viewBookUsingCache(@item.ISBN);">@item.Title</a>
             </div>
         }
 
         <br />
     }
-
 </div>
 
 @Html.Partial("_BookDescription", new BookViewModel())

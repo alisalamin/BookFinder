@@ -36,8 +36,8 @@ namespace BookFinder
 
             //Register Business Layer.
             var fakeDomain = AppDomain.CurrentDomain.GetAssemblies()
-    .Where(t => t.FullName.Contains("FakeDomain,"))
-    .ToArray();
+                .Where(t => t.FullName.Contains("FakeDomain,"))
+                .ToArray();
 
             builder.RegisterAssemblyTypes(fakeDomain).AsSelf().AsImplementedInterfaces().ExternallyOwned();
 
